@@ -1,5 +1,8 @@
-import { FC, useCallback } from 'react';
+import { FC, useCallback, useMemo } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { AddItemIcon } from '../../assets/svg/AddItemIcon';
+import { DeleteIcon } from '../../assets/svg/DeleteIcon';
+import { ResultIcon } from '../../assets/svg/ResultIcon';
 
 interface KeyboardItemProps {
   keyName: string;
@@ -7,16 +10,30 @@ interface KeyboardItemProps {
   hasOperator: boolean;
 }
 
-export const KeyboardItem: FC<KeyboardItemProps> = ({ keyName, onTouch }) => {
+export const KeyboardItem: FC<KeyboardItemProps> = ({
+  keyName,
+  onTouch,
+  hasOperator,
+}) => {
   const handleTouch = useCallback(() => {
     if (onTouch) {
       onTouch(keyName);
     }
   }, [keyName, onTouch]);
 
+  const actionIcons = useMemo<Record<string, React.ReactElement>>(
+    () => ({
+      add: <AddItemIcon />,
+      delete: <DeleteIcon />,
+      result: <ResultIcon hasOperator={hasOperator} />,
+    }),
+    [hasOperator],
+  );
+
   return (
     <View style={styles.wrapper} onTouchEnd={handleTouch}>
-      <Text style={styles.item}>{keyName}</Text>
+      {keyName.length === 1 && <Text style={styles.item}>{keyName}</Text>}
+      {keyName.length !== 1 && actionIcons[keyName]}
     </View>
   );
 };

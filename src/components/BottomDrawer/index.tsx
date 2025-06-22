@@ -1,4 +1,4 @@
-import { Animated, Text, StyleSheet, View } from 'react-native';
+import { Animated, StyleSheet, View } from 'react-native';
 import { BOTTOM_DRAWER_INDEX } from '../../styles/zIndex';
 import { CategoryBlock } from './CategoryBlock';
 import { CalculateBlock } from './CalculateBlock';
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     zIndex: BOTTOM_DRAWER_INDEX,
-    backgroundColor: '#d1d1d1',
+    backgroundColor: 'trasparent',
   },
   wrapper: {
     display: 'flex',
@@ -43,5 +43,6 @@ const styles = StyleSheet.create({
     height: '90%',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+    backgroundColor: '#d1d1d1',
   },
 });
