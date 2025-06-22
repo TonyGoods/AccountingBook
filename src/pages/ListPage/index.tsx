@@ -9,7 +9,9 @@ export const ListPage = () => {
 
   return (
     <View style={styles.wrapper}>
-      <Animated.View style={[styles.listWrapper, { transform: [{ scale: scaleAnim }] }]}>
+      <Animated.View
+        style={[styles.listWrapper, { transform: [{ scale: scaleAnim }] }]}
+      >
         <BottomNavigator onShowBottomDrawer={showPopup} />
       </Animated.View>
       {bottomDrawerStatus && (
@@ -26,5 +28,5 @@ const styles = StyleSheet.create({
   listWrapper: {
     flex: 1,
     borderRadius: 20,
-  }
+  },
 });
